@@ -5,10 +5,7 @@ public class Caballero extends Personaje {
         super(nombre);
         this.salud = 1500;
     }
-    public Caballero(String nombre, Ataque ataque) {
-        super(nombre, ataque);
-        this.salud = 1500;
-    }
+
 
     @Override
     public int[] ataca(Personaje enemigo) {

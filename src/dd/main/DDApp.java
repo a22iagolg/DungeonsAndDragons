@@ -7,7 +7,8 @@ import dd.core.*;
 class ControlLucha {
     Random r = new Random();
     Personaje[] ejercito_hombres = new Personaje[3];
-    Personaje[] ejercito_troll = new Personaje[r.nextInt(9) + 2];
+    //Se crea un nivel nuevo, cuando solo hay un enemigo (Rango de enemigos 1-10)
+    Personaje[] ejercito_troll = new Personaje[r.nextInt(10) + 1];
 
     ControlLucha() {
         crearEjercitos();
@@ -22,24 +23,35 @@ class ControlLucha {
         System.out.println("hallándose en los frondosos bosques del sitio de Deorham, se topó con una");
         System.out.println(
                 "patrulla de " + ejercito_troll.length + " de esas sanguinarias e inhumanas criaturas popularmente");
+        if(ejercito_troll.length > 1)
         System.out.println("conocidas como trolls.");
+        else
+        System.out.println("conocidas como GODZILLA EL REY DE LOS MONSTRUOS.");
+
         System.out.println("De la batalla que aconteció, dejo aquí testimonio:");
     }
 
     void crearEjercitos() {
         // Crear ejercito hombres
-        ejercito_hombres[0] = new Rey("Arturo", new AtaqueEspada());
-        ejercito_hombres[1] = new Caballero("Lancelot", new AtaqueEspada());
-        ejercito_hombres[2] = new Caballero("Percival", new AtaqueArco());
+        ejercito_hombres[0] = new Rey("Arturo");
+        ejercito_hombres[0].setAtaque(new AtaqueEspada());
+        ejercito_hombres[1] = new Caballero("Lancelot");
+        ejercito_hombres[1].setAtaque(new AtaqueEspada());
+        ejercito_hombres[2] = new Caballero("Percival");
+        ejercito_hombres[2].setAtaque(new AtaqueArco());
 
-
-        // Crear ejercito Troll
-        for (int i = 0; i < ejercito_troll.length; i++) {
-            int tipoArma = r.nextInt(3);
-            switch (tipoArma) {
-                case 0 -> ejercito_troll[i] = new Troll("Troll " + (i + 1), new AtaqueEspada());
-                case 1 -> ejercito_troll[i] = new Troll("Troll " + (i + 1), new AtaqueCuchillo());
-                case 2 -> ejercito_troll[i] = new Troll("Troll " + (i + 1), new AtaqueArco());
+        // Crear ejercito Troll / Godzilla si es solo 1
+        if (ejercito_troll.length == 1)
+            ejercito_troll[0] = new Godzilla("GODZILLA");
+        else {
+            for (int i = 0; i < ejercito_troll.length; i++) {
+                int tipoArma = r.nextInt(3);
+                ejercito_troll[i] = new Troll("Troll " + (i + 1));
+                switch (tipoArma) {
+                    case 0 -> ejercito_troll[i].setAtaque(new AtaqueEspada());
+                    case 1 -> ejercito_troll[i].setAtaque(new AtaqueArco());
+                    case 2 -> ejercito_troll[i].setAtaque(new AtaqueCuchillo());
+                }
             }
         }
     }
@@ -89,7 +101,6 @@ class ControlLucha {
                 } else {
                     break;
                 }
-
             }
 
         }

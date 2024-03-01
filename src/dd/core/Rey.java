@@ -5,12 +5,7 @@ public class Rey extends Personaje {
         super(nombre);
         this.salud = 2000;
     }
-    public Rey(String nombre, Ataque ataque){
-        super(nombre, ataque);
-        this.salud = 2000;
-    }
 
-    @Override
     public int[] ataca(Personaje enemigo) {
         int[] ataques = new int[3];
         if (ataque != null) {

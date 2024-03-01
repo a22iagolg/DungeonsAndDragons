@@ -12,10 +12,6 @@ public abstract class Personaje {
     Personaje(String nombre) {
         this.nombre = nombre;
     }
-    Personaje(String nombre, Ataque ataque) {
-        this.nombre = nombre;
-        this.ataque = ataque;
-    }
 
     public void setAtaque(Ataque ataque) {
         this.ataque = ataque;

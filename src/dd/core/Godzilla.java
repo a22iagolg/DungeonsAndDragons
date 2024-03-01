@@ -1,9 +1,10 @@
 package dd.core;
 
-public class Troll extends Personaje {
-    public Troll(String nombre) {
+public class Godzilla extends Personaje {
+    public Godzilla(String nombre) {
         super(nombre);
-        this.salud = 1000;
+        this.salud = 4000;
+        this.setAtaque(new AtaqueLaser());
     }
 
 
